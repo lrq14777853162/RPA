@@ -1,0 +1,37 @@
+# WeChat Article Scraper Configuration
+
+scraper:
+  # 搜索入口：sogou（搜狗微信搜索，无需登录，公开文章）
+  search_engine: sogou
+  base_url: "https://weixin.sogou.com/weixin"
+
+  # 每页文章数（搜狗每页10条）
+  page_size: 10
+
+  # 最多爬取页数（0 = 不限）
+  max_pages: 5
+
+  # 每次请求之间的随机延迟区间（秒）
+  delay_min: 2.0
+  delay_max: 5.0
+
+  # 是否抓取文章正文（会额外访问文章页面）
+  fetch_content: true
+
+  # 浏览器配置
+  headless: true
+  browser: chromium          # chromium / firefox / webkit
+  viewport_width: 1280
+  viewport_height: 800
+
+  # 请求超时（毫秒）
+  timeout: 30000
+
+storage:
+  # 输出目录
+  output_dir: output
+
+  # 支持格式：json / csv / sqlite
+  formats:
+    - json
+    - csv
