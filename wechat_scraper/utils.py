@@ -22,7 +22,7 @@ async def async_random_delay(min_sec: float = 2.0, max_sec: float = 5.0) -> None
 
 def parse_publish_time(raw: str) -> Optional[datetime]:
     """
-    尝试将搜狗搜索结果中的时间字符串解析为 datetime。
+    尝试将微信文章或搜索结果中的时间字符串解析为 datetime。
 
     常见格式：
       - "1天前" / "2小时前" / "30分钟前"

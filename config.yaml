@@ -1,31 +1,32 @@
-# WeChat Article Scraper Configuration
+# WeChat Article Scraper — RPA 模式配置
 
 scraper:
-  # 搜索入口：sogou（搜狗微信搜索，无需登录，公开文章）
-  search_engine: sogou
-  base_url: "https://weixin.sogou.com/weixin"
+  # RPA 模式：直接操控微信 Web（wx.qq.com），扫码登录后搜索文章
+  mode: rpa
 
-  # 每页文章数（搜狗每页10条）
-  page_size: 10
-
-  # 最多爬取页数（0 = 不限）
+  # 最多采集页数（每页约 10 条文章结果，翻页或滚动加载）
   max_pages: 5
 
-  # 每次请求之间的随机延迟区间（秒）
-  delay_min: 2.0
-  delay_max: 5.0
+  # 每次操作之间的随机延迟区间（秒），模拟人工节奏
+  delay_min: 1.5
+  delay_max: 3.5
 
-  # 是否抓取文章正文（会额外访问文章页面）
+  # 是否抓取文章正文（会额外打开文章页面）
   fetch_content: true
 
   # 浏览器配置
-  headless: true
+  # 注意：首次运行必须设 headless: false，以便扫码登录
+  headless: false
   browser: chromium          # chromium / firefox / webkit
   viewport_width: 1280
   viewport_height: 800
 
   # 请求超时（毫秒）
   timeout: 30000
+
+  # Session 持久化目录（保存登录状态，下次免扫码）
+  # 留空则不保存
+  session_dir: .session
 
 storage:
   # 输出目录
