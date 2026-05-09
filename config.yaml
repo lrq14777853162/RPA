@@ -1,0 +1,38 @@
+# WeChat Article Scraper — RPA 模式配置
+
+scraper:
+  # RPA 模式：直接操控微信 Web（wx.qq.com），扫码登录后搜索文章
+  mode: rpa
+
+  # 最多采集页数（每页约 10 条文章结果，翻页或滚动加载）
+  max_pages: 5
+
+  # 每次操作之间的随机延迟区间（秒），模拟人工节奏
+  delay_min: 1.5
+  delay_max: 3.5
+
+  # 是否抓取文章正文（会额外打开文章页面）
+  fetch_content: true
+
+  # 浏览器配置
+  # 注意：首次运行必须设 headless: false，以便扫码登录
+  headless: false
+  browser: chromium          # chromium / firefox / webkit
+  viewport_width: 1280
+  viewport_height: 800
+
+  # 请求超时（毫秒）
+  timeout: 30000
+
+  # Session 持久化目录（保存登录状态，下次免扫码）
+  # 留空则不保存
+  session_dir: .session
+
+storage:
+  # 输出目录
+  output_dir: output
+
+  # 支持格式：json / csv / sqlite
+  formats:
+    - json
+    - csv
