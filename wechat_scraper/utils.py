@@ -5,7 +5,8 @@ from __future__ import annotations
 import asyncio
 import random
 import re
-from datetime import datetime
+import time
+from datetime import datetime, timedelta
 from typing import Optional
 
 
@@ -34,24 +35,20 @@ def parse_publish_time(raw: str) -> Optional[datetime]:
     # 几分钟前
     m = re.match(r"(\d+)分钟前", raw)
     if m:
-        from datetime import timedelta
         return now - timedelta(minutes=int(m.group(1)))
 
     # 几小时前
     m = re.match(r"(\d+)小时前", raw)
     if m:
-        from datetime import timedelta
         return now - timedelta(hours=int(m.group(1)))
 
     # N 天前
     m = re.match(r"(\d+)天前", raw)
     if m:
-        from datetime import timedelta
         return now - timedelta(days=int(m.group(1)))
 
     # 昨天
     if "昨天" in raw:
-        from datetime import timedelta
         return now - timedelta(days=1)
 
     # YYYY-MM-DD
@@ -84,6 +81,3 @@ def count_chinese_words(text: str) -> int:
     chinese = len(re.findall(r"[\u4e00-\u9fff]", text))
     english_words = len(re.findall(r"\b[a-zA-Z]+\b", text))
     return chinese + english_words
-
-
-import time  # noqa: E402 – placed here to avoid circular with async_random_delay

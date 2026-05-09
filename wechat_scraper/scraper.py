@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import random
 import re
 from typing import AsyncIterator
 from urllib.parse import urlencode, urlparse, parse_qs
@@ -35,8 +36,6 @@ _USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:125.0) "
     "Gecko/20100101 Firefox/125.0",
 ]
-
-import random  # noqa: E402
 
 
 class WechatScraper:

@@ -52,6 +52,7 @@ _CSV_FIELDS = [
     "publish_time_raw",
     "cover_image",
     "content",
+    "images",
     "word_count",
     "keyword",
     "scraped_at",
@@ -70,7 +71,7 @@ def save_csv(articles: Sequence[Article], filepath: Path) -> None:
             writer.writeheader()
         for article in articles:
             row = article.to_dict()
-            # 将 list 字段转为字符串，避免 CSV 问题
+            # 将 list 字段转为字符串，方便 CSV 展示
             row["images"] = "; ".join(article.images)
             writer.writerow(row)
     console.print(f"[green]CSV 已保存 → {filepath}[/green]")
